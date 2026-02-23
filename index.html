@@ -61,6 +61,17 @@
             color: #94a3b8;
             margin-top: 80px;
         }
+
+        /* Simple styling for the MailerLite form */
+        .ml-form-embedContainer input {
+            padding: 12px !important;
+            border-radius: 6px !important;
+        }
+
+        .ml-form-embedContainer button {
+            background: #3b82f6 !important;
+            border-radius: 6px !important;
+        }
     </style>
 </head>
 
@@ -93,47 +104,57 @@
 <div class="section" id="waitlist">
     <h2>Join the TenantDesk Early Access List</h2>
 
-    <form id="waitlistForm">
-        <input type="email" id="emailInput" placeholder="Enter your email" required
-               style="padding:12px; width:300px; max-width:90%; border-radius:6px; border:1px solid #ccc;">
-        <br><br>
-        <button type="submit"
-                style="padding:12px 25px; background:#3b82f6; color:white; border:none; border-radius:6px; font-weight:600;">
-            Request Early Access
-        </button>
-    </form>
+    <!-- OFFICIAL MAILERLITE EMBED -->
+    <div id="mlb2-37480239" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37480239">
+        <div class="ml-form-align-center">
+            <div class="ml-form-embedWrapper embedForm">
+                <div class="ml-form-embedBody row-form">
 
-    <p id="successMessage" style="display:none; margin-top:20px; color:green; font-weight:600;">
-        You're on the list. We'll be in touch soon.
-    </p>
+                    <form class="ml-block-form"
+                          action="https://assets.mailerlite.com/jsonp/2132484/forms/180054106002425416/subscribe"
+                          method="post">
+
+                        <div class="ml-form-formContent">
+                            <div class="ml-form-fieldRow ml-last-item">
+                                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                    <input type="email"
+                                           name="fields[email]"
+                                           placeholder="Enter your email"
+                                           autocomplete="email"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="ml-submit" value="1">
+
+                        <div class="ml-form-embedSubmit">
+                            <button type="submit">Request Early Access</button>
+                        </div>
+
+                        <input type="hidden" name="anticsrf" value="true">
+                    </form>
+
+                </div>
+
+                <div class="ml-form-successBody row-success" style="display:none;">
+                    <div class="ml-form-successContent">
+                        <h4>You're on the list.</h4>
+                        <p>We’ll be in touch soon.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js"></script>
+
 </div>
 
 <footer>
     © 2026 TenantDesk. Built for modern property owners.
 </footer>
-
-<script>
-document.getElementById("waitlistForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById("emailInput").value;
-
-    fetch("https://assets.mailerlite.com/jsonp/2132484/forms/180054106002425416/subscribe", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "fields[email]=" + encodeURIComponent(email) + "&ml-submit=1"
-    })
-    .then(() => {
-        document.getElementById("waitlistForm").style.display = "none";
-        document.getElementById("successMessage").style.display = "block";
-    })
-    .catch(() => {
-        alert("Something went wrong. Please try again.");
-    });
-});
-</script>
 
 </body>
 </html>
